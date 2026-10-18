@@ -456,3 +456,19 @@ img { max-width: 100%; display: block; }
   .timeline { padding-left: 30px; }
   .timeline-dot { left: -23px; }
 }
+
+/* Keep the existing design while supporting keyboard and reduced-motion users. */
+:where(a, button):focus-visible {
+  outline: 3px solid var(--accent-light);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
